@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+@font-face{
+  font-family: jiret;
+  src:url(./fonts/jiretsl.ttf)
+}
+@font-face {
+  font-family: wookianos;
+  src: url(./fonts/wookianos.ttf);
+}

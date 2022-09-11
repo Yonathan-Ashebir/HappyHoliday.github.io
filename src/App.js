@@ -10,13 +10,13 @@ function App() {
   const [status, setStatus] = useState(statusEnum.dialog)
   const [name, setName] = useState('')
   const [isMale, setIsMale] = useState(true)
-  const elements = useRef<any>({ m1: [], m2: [] }).current
+  const elements = useRef({ m1: [], m2: [] }).current
   const onEnter = useCallback((ev) => {
-    if (ev.keyCode === 10 || ev.keyCode === 13) { setName((name || 'ኢትዮጵያ')); setStatus(statusEnum.animating) }
-  }, [true])
-  const onEdit = useCallback((ev) => setName((ev.target as HTMLInputElement)?.value || ''), [true])
-console.log('rendered with gender of ',isMale,' name of ',name)
-  const toggleGender = useCallback(() => { if (isMale) setIsMale(false); else setIsMale(true) }, [true])
+    if (ev.keyCode === 10 || ev.keyCode === 13) {console.log('>saved name: ',name); setName((name || 'ኢትዮጵያ')); setStatus(statusEnum.animating) }
+  }, [name])
+  const onEdit = useCallback((ev) => setName((ev.target)?.value || ''), [true])
+  console.log('rendered with gender of ', isMale, ' name of ', name)
+  const toggleGender = useCallback(() => { setIsMale(!isMale) }, [isMale])
   const randomAngle = useCallback(() => Math.floor(Math.random() * 45 - 22.5) + "deg", [true])
   const hideAll = useCallback(() => { anime({ targets: [elements.m1, elements.m2, elements.name, elements.buttons], opacity: 0 }) }, [true])
   useEffect(() => {
@@ -59,16 +59,16 @@ console.log('rendered with gender of ',isMale,' name of ',name)
       </div>
       <Container sx={{ padding: '8mm', alignItems: 'center', justifyContent: 'center', display: 'flex', flexFlow: 'row wrap' }}>
         {Array.from(`እንኳን ለአዲሱ ዓመት በሰላም አደረሰን አደረሰ${isMale ? 'ህ' : 'ሽ'}`).map((ch, ind) =>
-          <span key={ind} style={{ whiteSpace: 'pre', color: 'goldenrod', fontSize: '2.5rem', fontFamily: 'luxury', display: 'inline-block', opacity: 0 }} ref={(el => el && elements.m1.push(el))}>{ch}</span>
+          <span key={ind} style={{ whiteSpace: 'pre', color: 'goldenrod', fontWeight:'bold',fontSize: '2.5rem', fontFamily: 'jiret', display: 'inline-block', opacity: 0 }} ref={(el => el && elements.m1.push(el))}>{ch}</span>
         )}
       </Container>
       <Container sx={{ padding: '4mm', paddingTop: '8mm', paddingBottom: '8mm', alignItems: 'center', justifyContent: 'center', display: 'flex', flexFlow: 'row wrap' }}>
         {Array.from(`፪፻፲፭ የተሰፋና የስኬት ዓመት ይሁንል${isMale ? 'ህ' : 'ሽ'}`).map((ch, ind) =>
-          <span key={ind} style={{ whiteSpace: 'pre', color: 'brown', fontSize: '2rem', fontFamily: 'luxury', display: 'inline-block', opacity: 0, transform: 'translateX(-100%) scale:0.7' }} ref={(el => el && elements.m2.push(el))}>{ch}</span>
+          <span key={ind} style={{ whiteSpace: 'pre', color: 'brown', fontSize: '2rem', fontFamily: 'wookianos', display: 'inline-block', opacity: 0, transform: 'translateX(-100%) scale:0.7' }} ref={(el => el && elements.m2.push(el))}>{ch}</span>
         )}
       </Container>
       <Box sx={{ alignItems: 'center', justifyContent: 'center', display: 'flex' }}>
-        <h1 style={{ fontSize: '3rem', color: 'goldenrod', opacity: 0, transform: 'translateY(60%) scale(0.7)', }} ref={(el) => elements.name = el}>{`ለ${name}`}</h1>
+        <h1 style={{ fontSize: '3rem', color: 'goldenrod',fontFamily: 'wookianos', opacity: 0, transform: 'translateY(60%) scale(0.7)', }} ref={(el) => elements.name = el}>{`ለ${name}`}</h1>
       </Box>
       <Stack ref={el => elements.buttons = el} direction={'row'} spacing={3} sx={{ justifyContent: 'center', padding: '8mm', opacity: 0, color: 'white' }}>
         <IconButton onClick={() => { if (status === statusEnum.finished) { hideAll(); setStatus(statusEnum.animating) } }}><ReplaySharp></ReplaySharp> </IconButton>
@@ -77,11 +77,11 @@ console.log('rendered with gender of ',isMale,' name of ',name)
       </Stack>
       <Dialog open={status == statusEnum.dialog}>
         <DialogContent>
-          <Stack direction="column">
-            <TextField sx={{ borderColor: 'goldenrod' }} value={name} variant='outlined' placeholder='ስምዎትን ያስገቡ' lang='amh' onChange={onEdit}></TextField>
+          <Stack direction="column" >
+            <TextField style={{border: 'goldenrod',outline:'goldenrod' ,fontFamily: 'wookianos'}} value={name} variant='outlined' placeholder='ስምዎትን ያስገቡ' lang='amh' onChange={onEdit} onKeyDown={onEnter}></TextField>
             <Stack direction={'row'} sx={{ alignItems: 'center', justifyContent: 'space-between', paddingTop: '6mm', paddingBottom: '6mm' }}>
-              <Button sx={{ backgroundColor: 'goldenrod', color: 'white' }} onClick={toggleGender}> {isMale ? 'ወንድ' : 'ሴት'}</Button>
-              <IconButton onClick={(ev) => { setName((ev.target as HTMLInputElement)?.value || 'ኢትዮጵያ'); setStatus(statusEnum.animating) }}><ArrowForwardIos /></IconButton>
+              <Button style={{ backgroundColor: 'goldenrod', color: 'white' ,fontFamily: 'wookianos'}} onClick={toggleGender}> {isMale ? 'ወንድ' : 'ሴት'}</Button>
+              <IconButton onClick={(ev) => { setName(name || 'ኢትዮጵያ'); setStatus(statusEnum.animating) }}><ArrowForwardIos /></IconButton>
             </Stack>
             <Typography
               variant='body2'><a style={{ textDecoration: 'none', color: 'gray' }} href="mailto:yonatha12345678910@gmail.com">@yonathan_ash</a></Typography>
