@@ -1,4 +1,4 @@
 
 # HappyNewYear.github.io
- - static webpage for new year greeting
+ - A static webpage for new year greeting
 
