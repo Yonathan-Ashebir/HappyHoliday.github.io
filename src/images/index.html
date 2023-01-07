@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="./icon.css" />
+    <link rel="stylesheet" href="./font_awesome/css/font-awesome.min.css" />
+    <script type="text/javaScript" src="./excute.js"></script>
+    <link rel="stylesheet" href="./bootstrap.min.css" />
+    <link rel="stylesheet" href="./onsen-css-components.min.css" />
+   
+    <link rel="stylesheet" href="./ionicons.min.css" />
+    
+    <style>
+        @font-face {
+            font-family: 'lux';
+            src: url(./LuxuriousRoman-Regular.ttf);
+        }
+
+        @keyframes moving-letter-1 {
+            from {
+                transform: rotate(0deg) scale(1) translate(0px, 0);
+            }
+
+            to {
+                transform: rotate(10deg) scale(1.2) translate(0, -1px);
+            }
+        }
+
+        @keyframes moving-letter-2 {
+            from {
+                transform: rotate(0deg) scale(1) translate(0px, 0);
+            }
+
+            to {
+                transform: rotate(-5deg) scale(1.2) translate(0, -1px);
+            }
+        }
+
+        @keyframes moving-letter-3 {
+            from {
+                transform: rotate(0deg) scale(1) translate(0px, 0);
+            }
+
+            to {
+                transform: rotate(1deg) scale(1.2) translate(0, -1px);
+            }
+        }
+
+        @keyframes moving-letter-4 {
+            from {
+                transform: rotate(0deg) scale(1) translate(0px, 0);
+            }
+
+            to {
+                transform: rotate(-7deg) scale(1.2) translate(0, -1px);
+            }
+        }
+
+        @keyframes moving-letter-5 {
+            from {
+                transform: rotate(0deg) scale(1) translate(0px, 0);
+            }
+
+            to {
+                transform: rotate(7deg) scale(1.2) translate(0, -1px);
+            }
+        }
+
+        @keyframes shake-slow {
+            from {
+                transform: none;
+            }
+
+            25% {
+                transform: rotateX(-4deg) rotateY(-3deg) rotateZ(5deg);
+            }
+             50% {
+                transform: rotateX(8deg) rotateY(1deg) rotateZ(-6deg);
+            }
+             70% {
+                transform: rotateX(1deg) rotateY(4deg) rotateZ(-8deg);
+            }
+
+            to {
+                transform: rotateX(4deg) rotateY(-3deg) rotateZ(-6deg);
+            }
+
+        }
+
+
+
+
+
+        body {
+            background-color: #040507;
+            padding: 0;
+            margin: 0;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            overflow: scroll;
+            font-family: 'lux';
+            text-transform: capitalize;
+            color: #ffffcc;
+        }
+
+        .container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 500px;
+            height: 700px;
+            padding: 0;
+            margin: 0;
+        }
+
+        .container>.background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+            z-index: 0;
+
+        }
+
+        #front {
+            z-index: 01;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+        }
+
+        .letter-animator {
+            width: 100%;
+            height: 2em;
+            display: flex;
+            padding: 1em 1em;
+            justify-content: center;
+            flex-wrap: wrap;
+            flex: 0 0;
+            align-items: center;
+        }
+
+        .animated-letter {
+            opacity: 0;
+            width: 1.3em;
+            height: 1.5em;
+            display: inline-block;
+            color: #ffffcc;
+            font-size: 1.3em;
+            white-space: pre-wrap;
+            text-transform: capitalize;
+            font-family: 'lux';
+            font-weight: 1000;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+            animation-duration: 2s;
+            animation-fill-mode: none;
+            padding: 0px;
+            margin: 0px;
+            transition: opacity 5s;
+
+        }
+
+        .anim-1 {
+            animation-name: moving-letter-1;
+            animation-delay: 1s;
+        }
+
+        .anim-2 {
+            animation-name: moving-letter-2;
+            animation-delay: 1.4s;
+        }
+
+        .anim-3 {
+            animation-name: moving-letter-3;
+            animation-delay: 1.2s;
+        }
+
+        .anim-4 {
+            animation-name: moving-letter-4;
+            animation-delay: 1.3s;
+        }
+
+        .anim-5 {
+            animation-name: moving-letter-5;
+            animation-delay: 1.1s;
+        }
+
+        #merry {
+            width: 100%;
+            height: fit-content;
+            padding: 3.2em 1em;
+        }
+
+      
+        #action-container {
+            position: absolute;
+            bottom: 2em;
+            width: 100%;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            align-content: center;
+        }
+
+        .action {
+            opacity: 0;
+            color: #ffffcc;
+            font-size: 2em;
+            height: 1.3em;
+            width: 1.3em;
+            border-radius: 50%;
+            display: inline-block;
+            border: none;
+            background-color: transparent;
+            padding: 1px;
+            margin: 0.3em 1em;
+            transition-duration: 0.3s;
+        }
+
+        .action:hover {
+            color: #ffff99;
+
+        }
+
+        #restart:active {
+            transform: scale(0.88) rotateX(20deg) rotate(180deg);
+
+        }
+
+        #change-user:active {
+            transform: scale(0.88) rotateX(20deg);
+        }
+
+        .merge-in {
+            opacity: 0;
+        }
+
+        #user-name {
+            width: 100%;
+            margin: 1em 0 0;
+            text-align: center;
+            font-size: 3em;
+        }
+
+        #for-all {
+            letter-spacing: 0.3em;
+            margin-top: 8em;
+        }
+
+        #for-all h1 {
+            animation-name:shake-slow ;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+            animation-duration: 3s;
+            height: 0.5em;
+            text-align: center;
+            width: 100%;
+        }
+
+        .dialogue {
+            transition-duration: 0.5s;
+            width: 400px;
+            height: 400px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 02;
+           
+        }
+
+        .field-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            width: fit-content;
+            padding: 1em;
+        }
+
+        .input-name {
+            width: max-content;
+            left: 50%;
+            transform: translate(-50%, 0);
+        }
+
+        i {
+            transition-duration: 0.36s;
+            height: 100%;
+            padding: 10px 10px 0 0;
+            font-size: 100%;
+            color:#4444ff;
+        }
+
+        .input-name:focus i,
+        .input-name:hover i {
+            color: royalblue;
+            transform: scale(1.2)
+        }
+
+
+        .submit {
+            border-radius: 30px;
+            position: relative;
+            left: 50%;
+            transform: translate(-50%, 0);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <img class="background" src="./christmas-tree-merry-christmas.gif" />
+        <div id="front">
+            <div class="letter-animator" id="merry">
+
+                <span id="m" class="animated-letter anim-1">m</span>
+                <span class="animated-letter anim-2">e</span>
+                <span class="animated-letter anim-3">r</span>
+                <span class="animated-letter anim-4">r</span>
+                <span class="animated-letter anim-5">y</span>
+                <span class="animated-letter anim-3"> </span>
+                <span class="animated-letter anim-2">c</span>
+                <span class="animated-letter anim-1">h</span>
+                <span class="animated-letter anim-5">r</span>
+                <span class="animated-letter anim-4">s</span>
+                <span class="animated-letter anim-2">t</span>
+                <span class="animated-letter anim-3">m</span>
+                <span class="animated-letter anim-1">a</span>
+                <span class="animated-letter anim-4">s</span>
+                <span class="animated-letter anim-5">s</span>
+            </div>
+
+            <div class="letter-animator" id="for-you">
+                <span class="animated-letter anim-1">f</span>
+                <span class="animated-letter anim-2">o</span>
+                <span class="animated-letter anim-3">r</span>
+                <span class="animated-letter anim-4"> </span>
+                <span class="animated-letter anim-5">y</span>
+                <span class="animated-letter anim-3">o</span>
+                <span class="animated-letter anim-2">u</span>
+
+            </div>
+
+            <div id="user-name" class="merge-in">
+                //user-name-here
+            </div>
+            <div id="for-all">
+                <h1 class="merge-in">and for</h1></br>
+                <h1 class="merge-in">all ethiopians</h1>
+            </div>
+            <div id="action-container">
+                <button class="action material-icons" id="restart" onclick="restart()">refresh</button>
+                <button class="action material-icons" id="change-user" onclick="changeUser()">person</button>
+            </div>
+        </div>
+        <div id="dialogue"class="dialogue">
+            <div class="field-container">
+                <div class="card input-name">
+                    <div><i class="fa fa-user"></i><input style="border:#ffffcc 0.6px block" type="text"
+                            id="field-name" />
+                    </div>
+                </div>
+               
+                <span style="margin-top: 0.1em;padding-left:1.5em;width:3500px" align="center">&copy;Yonathan Ashebir</span> <span style="text-align:end; width:100px; padding-right: 10px;"class="ion ion-arrow-right-c" type="submit" onclick="newUser()"></span>
+            </div>
+        </div>
+    </div>
+    <script>
+      
+        var isRunning = false;
+        function start() {
+            if (isRunning) throw "illegal state, wait until it gets done"
+            isRunning = true;
+            let animLet = document.getElementsByClassName("animated-letter");
+            if (animLet == null) throw "no letter to animate"
+            for (let ind = 0; ind < animLet.length; ind++) {
+                let t = 500 + ind * 200;
+                setTimeout(() => { animLet[ind].style.opacity = 1; }, t);
+                if (ind == animLet.length - 1) { setTimeout(() => { enterNames(); }, t + 6000); }
+            }
+
+        }
+        function enterNames() {
+            let mergeIns = document.getElementsByClassName("merge-in");
+            if (mergeIns == null) throw "no name to animate"
+            for (let ind = 0; ind < mergeIns.length; ind++) {
+                let t = 3000 + ind * 800;
+                setTimeout(() => { mergeIn(mergeIns[ind]) }, t);
+                if (ind == mergeIns.length - 1) { setTimeout(() => { showActions(); }, t + 1000); }
+            }
+
+        }
+        function showActions() {
+            let actions = document.getElementsByClassName("action");
+            if (actions == null) throw "no name to animate"
+            for (let ind = 0; ind < actions.length; ind++) {
+                let t = 2000 + ind * 200;
+                setTimeout(() => { actions[ind].style.opacity = 1; }, t);
+                if (ind == actions.length - 1) { setTimeout(() => { announceCompletion() }, t + 3000); }
+            }
+        }
+        function announceCompletion() {
+            isRunning = false;
+        }
+        function mergeIn(el) {
+            excute({ targets: el, duration: 1000, opacity: [0, 1], translateY: { value: [50, 0], duration: 400 }, scale: { value: [0.9, 1], delay: 300, duration: 300 }, rotateX: [-20, -20], easing: 'linear' });
+        }
+
+        function hideAll() {
+            let set = document.getElementsByClassName("merge-in");
+            for (let ind = 0; ind < set.length; ind++) {
+                let el = set[ind];
+                if (el.style == null) { continue; console.log("unhidable node") };
+                el.style.opacity = "0";
+            }
+            set = document.getElementsByClassName("action");
+            for (let ind = 0; ind < set.length; ind++) {
+                let el = set[ind];
+                if (el.style == null) { continue; console.log("unhidable node") };
+                el.style.opacity = "0";
+            }
+            set = document.getElementsByClassName("animated-letter");
+            for (let ind = 0; ind < set.length; ind++) {
+                let el = set[ind];
+                if (el.style == null) { continue; console.log("unhidable node") };
+                el.style.opacity = "0";
+            }
+        }
+        function newUser() {
+
+            let name = document.getElementById("field-name").value;
+            if (name == "") name = "Anonymous Guy";
+            document.getElementById("user-name").innerHTML = name;
+            document.getElementById("dialogue").style.opacity=0;
+            document.getElementById("dialogue").display = "none";
+            start();
+
+        }
+        function restart() {
+            hideAll();
+            setTimeout(start(),3000);
+            
+        }
+        function changeUser(){
+            hideAll();
+             document.getElementById("dialogue").display = "block";
+            document.getElementById("dialogue").style.opacity = 1;
+        }
+    </script>
+</body>
+
+</html>
