@@ -36,3 +36,17 @@
     transform: rotate(360deg);
   }
 }
+
+@keyframes year-up-down {
+  from{
+    transform: translateY(0em);
+  }
+  
+   to{
+    transform: translateY(-0.3em);
+  }
+}
+
+#year{
+  animation: year-up-down 1s alternate infinite linear;
+}

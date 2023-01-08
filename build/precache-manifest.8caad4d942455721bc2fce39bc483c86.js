@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "c6dcb81b6b1b044b6bd0",
-    "url": "/static/css/main.1c23af6e.chunk.css"
+    "revision": "6777d566822b370e7474",
+    "url": "/static/css/main.cb8a2a36.chunk.css"
   },
   {
-    "revision": "c6dcb81b6b1b044b6bd0",
-    "url": "/static/js/main.c6dcb81b.chunk.js"
+    "revision": "6777d566822b370e7474",
+    "url": "/static/js/main.6777d566.chunk.js"
   },
   {
     "revision": "d18151b26033b92b7cd2",
@@ -20,7 +20,11 @@ self.__precacheManifest = [
     "url": "/static/js/runtime~main.53206e60.js"
   },
   {
-    "revision": "2cd62167659ce54cddd88d5d37297f6a",
+    "revision": "a36758be75809acdf1c50e2b208eeefb",
+    "url": "/static/media/LuxuriousRoman-Regular.a36758be.ttf"
+  },
+  {
+    "revision": "0e0f61de7535bc69caa45fc3bc40b64b",
     "url": "/index.html"
   }
 ];
