@@ -3,7 +3,7 @@ import { Container, Dialog, DialogContent, IconButton, TextField, Typography } f
 import { Stack } from '@mui/system';
 import anime from 'animejs';
 import Lottie from 'lottie-react';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import React,{ useCallback, useEffect, useRef, useState } from 'react';
 import './App.css';
 import merry_christmas from './json/merry_christmas.json';
 
